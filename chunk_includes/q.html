@@ -1,0 +1,201 @@
+<head>
+  <title> Experiment Questionaire </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style type="text/css">
+
+    p {
+      font-family: "Times New Roman", Times, serif;
+      text-align: left;
+      background-color: black;
+      color:white;    }
+    
+    body {
+      background-color: black; 
+      color:white;
+    }
+    
+    h2 {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    a {
+      text-decoration: none;
+      color:white;
+    }
+
+    form{
+      margin: -100 auto 10;
+      width: 75%;
+      clear: both;
+      padding: 2%;
+      background-color: black;
+      padding-top: 2em;
+      color: white;
+    }
+    
+   input {
+    font-family: "Times New Roman", Times, serif;
+    font-size: x-large;
+    width: auto;}
+    
+
+    
+</style>
+  
+<script> 
+  
+var questionArray = 
+["Q: Did the children turn over the rock before poking at the bug with their sticks?",
+"Q: How frequently would the farmers meet to talk about the weather?",
+"Q: Where were the cowboys riding around while looking for a lost calf?",
+"Q: How does David feel about raw tomatoes?",
+"Q: What did Peter use to open the can?",
+"Q: Is the microwave used only for popcorn?",
+"Q: Who was expecting company for dinner?",
+"Q: Did the sentence say the saleswoman close the ladies' dressing room?",
+"Q: When did the artist paint an enormous sculpture?",
+"Q: Did thirty thousand people protest having a power plant?",
+"Q: Where did the truck driver stop for breakfast?",
+"Q: Did Sally wrap her scarf around the baby to keep it warm?",
+"Q: Who hated proof reading documents late at night?",
+"Q: Was the couple mentioned young or old?",
+"Q: When did Judy buy a new brand of shampoo?"];   
+        
+var answersLeft = ["f = Yes", "f = Sometimes", "f = Pasture", "f = Likes them", "f = Screwdriver", "f = No", "f = Jenny", "f = Yes", "f = On Monday", "f = No", "f = Coffee shop", "f = Yes", "f = The assistant", "f = Young", "f = Yesterday"];
+var answersRight = ["j = No", "j = Often", "j = Ranch", "j = Dislikes them", "j = Spatula", "j = Yes", "j = Kenny", "j = No", "j = On Wednesday", "j = Yes", "j = Truck Stop", "j = No", "j = The consultant", "j = Old", "j = The other day"];
+        
+var correctKeys = ["102","102","106","102","102","102","106","106","102","102","106","106","102","102","106"];
+
+document.getElementById("q").innerHTML = questionArray[q-1]
+document.getElementById("ansLeft").innerHTML = answersLeft[q-1]
+document.getElementById("ansRight").innerHTML = answersRight[q-1]
+  
+ 
+function correctAns(e){
+    var keycode = (e.keycode ? e.keyCode : e.which); 
+    if (keycode == "102") { 
+      
+      if (correctKeys[q-1] == "102") {
+          correctList = correctList + "c" 
+          var n = correctList.length-1;
+          alert("Correct! Nice job. :)");
+          document.getElementById("datatosend").value = "correct"
+
+
+      } else { 
+          var n = correctList.length-1;
+          document.getElementById("datatosend").value = "incorrect"
+          alert("Sorry, that's incorrect! Make sure to read more carefully next time. :)");
+
+      };
+      
+      
+      document.removeEventListener('keypress', correctAns);
+      document.body.style.cursor = 'pointer';
+      
+      var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        title:{
+        text: "How many questions have you gotten correct?"
+        },
+        axisY: {
+        title: "Total Questions Correct", 
+        maximum: 15,
+        interval: 1,
+        },
+        data: [{        
+        type: "column",  
+        dataPoints: [      
+        { y: n, label: "Current Score" },
+        { y: 10,  label: "Average Score" },
+        { y: 15,  label: "Perfect Score" },
+
+    ]
+  }]
+});
+chart.render();
+                             
+
+    } else if (keycode == "106") {
+      
+      if (correctKeys[q-1] == "106") {
+          correctList = correctList + "c" 
+          var n = correctList.length-1;
+          alert("Correct! Nice job. :)");
+          document.getElementById("datatosend").value = "correct"
+
+
+      } else { 
+          var n = correctList.length-1;
+          document.getElementById("datatosend").value = "incorrect"
+          alert("Sorry, that's incorrect! Make sure to read more carefully next time. :)");
+
+        
+      };       
+                     
+               
+      document.removeEventListener('keypress', correctAns);
+      document.body.style.cursor = 'pointer';
+
+     
+      var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2", // "light1", "light2", "dark1", "dark2"
+        title:{
+        text: "How are you doing so far?"
+        },
+        axisY: {
+        title: "Total Questions Correct", 
+        maximum: 15,
+        interval: 1,
+        },
+        data: [{        
+        type: "column",  
+        dataPoints: [      
+        { y: n, label: "Current Score" },
+        { y: 10,  label: "Average Score" },
+        { y: 15,  label: "Perfect Score" },
+
+    ]
+  }]
+});
+chart.render();
+           
+      
+    } else { 
+       
+       alert("Please use either 'f' or 'j' to answer!"); 
+      
+   
+}};
+    
+document.addEventListener('keypress', correctAns)
+document.body.style.cursor = 'none';
+              
+  
+</script>    
+  
+<form>
+  
+
+<center><h1 id= "q"><u>This is the question.</u></h1></center>
+<hr>
+
+<h2>
+  <span><p id="ansLeft">...</p></span>
+  <p id = "ansRight">...</p>
+</h2>
+
+
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+  
+        <form id="flashlight_questions">
+          <input id="datatosend" type="hidden" name="datatosend">
+        </form> 
+
+  
+</form>

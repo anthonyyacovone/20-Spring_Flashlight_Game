@@ -1,0 +1,52 @@
+
+.Message-continue-link {
+    font-size: x-large;
+    text-decoration: none;
+}
+
+.Message-continue-link:visited {
+    color: #ffe000;
+}
+
+.Message_AY-continue-link {
+    text-decoration: none;
+    color: red;
+    font-size: xx-large;
+}
+
+
+body { 
+  background-color:black;
+  color: white;
+}
+
+
+p {
+  text-align: left;
+  font-size: large;
+}
+
+
+li.QuestionAlt-scale-box {
+    width: auto;
+    height: auto;
+    display: table;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    padding-top: 0.5em;
+    text-align: center;
+    font-size: larger;
+    border: 0px;
+    float: left;
+    list-style: none;
+    margin-left: 8.5em;
+    padding-left: 0;
+    margin-right: 10em;
+    padding-right: 0;
+}
+
+.QuestionAlt-QuestionAlt {
+    margin-left: 0;
+    padding-left: 0;
+    font-size: x-large;
+}

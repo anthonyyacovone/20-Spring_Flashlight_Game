@@ -1,0 +1,20 @@
+.error-text {
+    color: red;
+    font-weight: bold;
+}
+
+p {
+  text-align: left;
+  font-size: large;
+  font-family: Monaco;
+}
+
+
+Message-continue-link:visited { 
+  color: white; 
+  }
+
+Message-continue-link { 
+  color: white; 
+  margin-left: 30em;
+  }

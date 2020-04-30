@@ -1,0 +1,163 @@
+
+
+<!-- Any website -->
+<html>
+<head>
+ <style> 
+    div {
+    width: 70em;
+    font-size: large;
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+  }
+  
+  input {
+      border-top-style: hidden;
+      border-right-style: hidden;
+      border-left-style: hidden;
+      border-bottom-style: hidden;
+      background-color: white;
+      }
+  
+  textarea:focus, input:focus{
+    outline: none;
+  }
+
+  p {
+    font-size: large;
+    text-align: justify;
+  }
+
+  body {
+    color: black;
+    background-color: white;
+    margin-left: .5em;
+    margin-right: .5em;
+    margin-top: 4.75em;
+    font-size: 24pt;
+  }
+
+/* Flashlight Overlay */
+:root {
+  cursor: none;
+  --cursorX: 50vw;
+  --cursorY: 50vh;
+}
+:root:before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 12vmax at var(--cursorX) var(--cursorY),
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,.5) 25%,
+    rgba(0,0,0,.7) 50%,
+    rgba(0,0,0,1) 100%
+  )
+}
+   </style>
+
+</head>
+ 
+
+
+<script>
+var start = Date.now()
+var last_trial = Date.now()
+var end = 0
+var RT = 0  
+var x = 0
+var y = 0 
+var list = ""
+var i = 0
+  
+document.getElementById("fill").focus();
+
+function update(e){
+  RT = Date.now() - start
+  lag = Date.now() - last_trial
+  last_trial = Date.now()
+  i = i+1
+  
+  var x = e.clientX || e.touches[0].clientX
+  var y = e.clientY || e.touches[0].clientY
+
+  document.documentElement.style.setProperty('--cursorX', x + 'px')
+  document.documentElement.style.setProperty('--cursorY', y + 'px')
+      
+  list = list + "," + "fixation_"+ i + "," + x + "," + y + "," + RT + "," + lag
+  document.getElementById("datatosend").value = questionedStimuli[q] + list
+  document.getElementById("fill").focus();
+
+   
+}
+
+document.addEventListener('mousemove',update)
+document.addEventListener('touchmove',update)
+  
+var questionedStimuli = 
+["The children turned over a rock and poked sticks at the bugs that ran out from underneath it.",
+"Sometimes the farmers in town would meet at the feed shop and talk about the weather.",
+"The cowboys were riding around the ranch, looking for a lost calf.",
+"David’s mother couldn’t understand why he didn’t like raw tomatoes.",
+"Peter had to pry the can of paint open with a screwdriver because the lid was stuck on.",
+"The microwave on the table is used mainly for popcorn.",
+"Kenny expected the girl next door to come over when she was finished with her homework.",
+"The saleswoman closed the ladies’ fitting room because the ceiling was leaking.",
+"On Monday the artist painted an enormous sculpture in rainbow patterns.",
+"Thirty thousand people showed up to protest against the relocation of the power plant.",
+"The truck driver stopped at the truck stop for breakfast after driving all night.",
+"Sally wrapped her arms around her baby to keep it warm.",
+"The assistant of the consultant hated having to proof read documents late at night.",
+"The used car salesman convinced the young couple to buy a station wagon.",
+"Judy used a new brand of shampoo the other day and liked the way it made her hair smell."]
+    
+  
+document.getElementById("text").innerHTML = questionedStimuli[q]
+var q = q+1
+
+</script>      
+
+
+<body>
+
+     <form id="inputarea" onSubmit="return false;">
+        <p></p><br>
+        <p id ="text"> This is a practice sentence. After reading, simply press 'Enter'.</p> <input id="fill" type="text" style="width: 1px"value="">
+
+        <form id="flashlight_game">
+          <input id="datatosend" type="hidden" name="datatosend">
+        </form>  
+      </form>  
+
+</body>
+</html>     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
